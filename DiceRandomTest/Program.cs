@@ -41,6 +41,67 @@ namespace DiceRandomTest
         }
     }
 
+    class Scoreboard
+    {
+        public bool oneComplete { get; set; }
+        public bool twoComplete { get; set; }
+        public bool threeComplete { get; set; }
+        public bool fourComplete { get; set; }
+        public bool fiveComplete { get; set; }
+        public bool sixComplete { get; set; }
+
+        public bool threeKindComplete { get; set; }
+        public bool fourKindComplete { get; set; }
+        public bool yahtzeeComplete { get; set; }
+        public bool smallStraightComplete { get; set; }
+        public bool largeStraightComplete { get; set; }
+        public bool fullHouseComplete { get; set; }
+        public bool chanceComplete { get; set; }
+    }
+
+    class TurnScore
+    {
+        public bool isLargeStraight { get; set; }
+        public bool isSmallStraight { get; set; }
+        public bool is3kind { get; set; }
+        public bool is4kind { get; set; }
+        public bool isYahtzee { get; set; }
+
+        public int oneScore { get; set; }
+        public int twoScore { get; set; }
+        public int threeScore { get; set; }
+        public int fourScore { get; set; }
+        public int fiveScore { get; set; }
+        public int sixScore { get; set; }
+
+        public void calcTopScore(int dieFace, int timesRolled)
+        {
+            switch(dieFace)
+            {
+                case 1:
+                    oneScore = 1 * timesRolled;
+                    break;
+                case 2:
+                    twoScore = 2 * timesRolled;
+                    break;
+                case 3:
+                    threeScore = 3 * timesRolled;
+                    break;
+                case 4:
+                    fourScore = 4 * timesRolled;
+                    break;
+                case 5:
+                    fiveScore = 5 * timesRolled;
+                    break;
+                case 6:
+                    sixScore = 6 * timesRolled;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -59,7 +120,8 @@ namespace DiceRandomTest
 
             // randomizes an integer from 1-6 for each die in the list
             // assigns the value of the roll ("Face" property) to each corresponding die
-            foreach(Die d in dieList)
+           
+            foreach (Die d in dieList)
             {
                 d.Face = intRand.Next(1, 7);
                 Console.WriteLine("Die {0} value: {1}", d.Position, d.Face);
@@ -109,7 +171,22 @@ namespace DiceRandomTest
                     default:
                         continue;
                 }
+            }
 
+            if (dict.Keys.Contains(1) && dict.Keys.Contains(2) && dict.Keys.Contains(3) && dict.Keys.Contains(4))
+            {
+                Console.WriteLine("Eligible for large straight scoring.");
+                Console.WriteLine("Eligible for small straight scoring.");
+            }
+            else if (dict.Keys.Contains(2) && dict.Keys.Contains(3) && dict.Keys.Contains(4) && dict.Keys.Contains(5))
+            {
+                Console.WriteLine("Eligible for large straight scoring.");
+                Console.WriteLine("Eligible for small straight scoring.");
+            }
+            else if (dict.Keys.Contains(3) && dict.Keys.Contains(4) && dict.Keys.Contains(5) && dict.Keys.Contains(6))
+            {
+                Console.WriteLine("Eligible for large straight scoring.");
+                Console.WriteLine("Eligible for small straight scoring.");
             }
         }
     }
