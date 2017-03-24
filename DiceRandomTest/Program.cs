@@ -57,6 +57,13 @@ namespace DiceRandomTest
         public bool largeStraightComplete { get; set; }
         public bool fullHouseComplete { get; set; }
         public bool chanceComplete { get; set; }
+
+        public void buildScoreBoard()
+        {
+            Console.WriteLine("{0,-10} {1,-10} {2,-10} {3,-10} {4,-10} {5,-10}\n", "Ones", "Twos", "Threes", "Fours", "Fives", "Sixes");
+            Console.WriteLine("{0, -10} {1,-10}", "3", "6");
+            Console.WriteLine("*----------------------------------------------------------------*");
+        }
     }
 
     class TurnScore
@@ -188,6 +195,9 @@ namespace DiceRandomTest
                 Console.WriteLine("Eligible for large straight scoring.");
                 Console.WriteLine("Eligible for small straight scoring.");
             }
+
+            Scoreboard scoreBoard = new Scoreboard();
+            scoreBoard.buildScoreBoard();
         }
     }
 }
